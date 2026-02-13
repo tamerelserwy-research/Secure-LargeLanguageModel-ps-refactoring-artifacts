@@ -4,7 +4,7 @@ from typing import Dict, List, Any, Tuple
 from .ast_validator import ASTValidator
 from .security_patterns import SecurityPatterns
 from .secure_executor import SecureExecutor
-from .metrics import CodeBLEU
+from .metrics import Metrics  # now imports full CodeBLEU
 
 class ComplianceVerifier:
     """Orchestrates multi-layer verification of generated code."""
@@ -13,7 +13,7 @@ class ComplianceVerifier:
         self.ast_validator = ASTValidator()
         self.patterns = SecurityPatterns()
         self.executor = SecureExecutor()
-        self.codebleu = CodeBLEU()
+        self.metrics = Metrics()  # includes CodeBLEU
 
     def verify(self, generated: str, source: str, test_cases: List[Dict] = None) -> Tuple[bool, List[str]]:
         """
@@ -49,8 +49,8 @@ class ComplianceVerifier:
                     issues.append("FUNCTIONAL_INCORRECTNESS")
                     break
 
-        # Layer 4: Semantic Preservation
-        sim = self.codebleu.compute(source, generated)
+        # Layer 4: Semantic Preservation (using full CodeBLEU)
+        sim = self.metrics.semantic_similarity(source, generated)
         if sim < 0.5:  # threshold from paper
             issues.append("SEMANTIC_DRIFT")
 
