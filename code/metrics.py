@@ -1,14 +1,16 @@
-"""Evaluation metrics: VIR, SCR, CodeBLEU."""
+"""Evaluation metrics: VIR, SCR, CodeBLEU (now with full implementation)."""
 
 import re
-from typing import List, Set
+from typing import List, Set, Optional
 from .security_patterns import SecurityPatterns
+from .codebleu import CodeBLEUCalculator
 
 class Metrics:
     """Computes security and functional metrics."""
 
     def __init__(self):
         self.patterns = SecurityPatterns()
+        self.codebleu = CodeBLEUCalculator()  # Use the new full implementation
 
     def vulnerability_introduction_rate(self, source_codes: List[str], gen_codes: List[str]) -> float:
         """
@@ -43,6 +45,10 @@ class Metrics:
         """Percentage passing functional tests."""
         return (sum(test_results) / len(gen_codes)) * 100 if gen_codes else 0
 
+    def semantic_similarity(self, reference: str, candidate: str) -> float:
+        """Return CodeBLEU score between reference and candidate."""
+        return self.codebleu.compute(reference, candidate)
+
     def _count_vulnerabilities(self, code: str) -> int:
         count = 0
         for pat in self.patterns.critical_patterns:
@@ -52,17 +58,3 @@ class Metrics:
             if re.search(pat, code, re.IGNORECASE):
                 count += 1
         return count
-
-
-class CodeBLEU:
-    """Simplified CodeBLEU (placeholder – actual would use tree-sitter)."""
-
-    def compute(self, reference: str, candidate: str) -> float:
-        """Return a similarity score between 0 and 1."""
-        # Very simplified: token overlap
-        ref_tokens = set(reference.split())
-        cand_tokens = set(candidate.split())
-        if not ref_tokens:
-            return 1.0
-        overlap = len(ref_tokens & cand_tokens)
-        return overlap / len(ref_tokens)
