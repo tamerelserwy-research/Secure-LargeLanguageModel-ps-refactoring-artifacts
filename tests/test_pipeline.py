@@ -13,6 +13,7 @@ from secure_executor import SecureExecutor
 from prompt_defense import PromptDefense
 from compliance import ComplianceVerifier
 from metrics import Metrics, CodeBLEU
+from codebleu import CodeBLEUCalculator
 
 class TestSecurityPatterns:
     def test_risk_calculation(self):
@@ -104,3 +105,13 @@ class TestCodeBLEU:
         assert sim == 1.0
         sim2 = cb.compute("Get-Process", "Get-Service")
         assert sim2 < 1.0
+
+def test_codebleu():
+    cb = CodeBLEUCalculator()
+    ref = "Get-Process -Name notepad"
+    cand = "Get-Process -Name notepad"
+    assert cb.compute(ref, cand) == pytest.approx(1.0, abs=0.01)
+
+    cand2 = "Get-Service -Name notepad"
+    score = cb.compute(ref, cand2)
+    assert 0.0 < score < 1.0
