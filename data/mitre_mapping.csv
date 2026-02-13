@@ -1,0 +1,21 @@
+CommandPattern,Category
+Invoke-Expression,Execution
+IEX,Execution
+Invoke-Command,Execution
+DownloadString,Execution
+Bypass,Defense Evasion
+WindowStyle Hidden,Defense Evasion
+EncodedCommand,Defense Evasion
+Invoke-Mimikatz,Credential Access
+RIDHijacking,Privilege Escalation
+TokenManipulation,Privilege Escalation
+Get-Process,Discovery
+Get-Service,Discovery
+Get-ChildItem,Discovery
+Get-ADUser,Discovery
+Set-ItemProperty,Persistence
+New-Service,Persistence
+Register-ScheduledTask,Persistence
+Remove-Item,Impact
+Stop-Process,Impact
+Clear-EventLog,Defense Evasion
