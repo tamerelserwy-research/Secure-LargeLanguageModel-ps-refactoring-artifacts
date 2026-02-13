@@ -1,0 +1,52 @@
+[
+  {
+    "nl": "Securely get process information",
+    "code": "Get-Process -Name $processName",
+    "risk": 0
+  },
+  {
+    "nl": "Download a script with integrity check",
+    "code": "$url = 'https://example.com/script.ps1'; $expectedHash = 'SHA256-HASH'; $content = (Invoke-RestMethod -Uri $url -UseBasicParsing); $actualHash = (Get-FileHash -InputStream ([System.IO.MemoryStream]::new([Text.Encoding]::UTF8.GetBytes($content))) -Algorithm SHA256).Hash; if ($actualHash -eq $expectedHash) { & ([scriptblock]::Create($content)) }",
+    "risk": 2
+  },
+  {
+    "nl": "Execute command with parameters",
+    "code": "& $cmdlet @parameters",
+    "risk": 1
+  },
+  {
+    "nl": "Start a service safely",
+    "code": "Start-Service -Name $serviceName",
+    "risk": 0
+  },
+  {
+    "nl": "Get AD user without preauth",
+    "code": "Get-ADUser -Filter * -Properties DoesNotRequirePreAuth | Where-Object {$_.DoesNotRequirePreAuth -eq $true}",
+    "risk": 1
+  },
+  {
+    "nl": "Invoke command on remote host with explicit credentials",
+    "code": "Invoke-Command -ComputerName $computer -Credential $cred -ScriptBlock { Get-Process }",
+    "risk": 2
+  },
+  {
+    "nl": "Create a new local user with no password",
+    "code": "New-LocalUser -Name $username -NoPassword",
+    "risk": 1
+  },
+  {
+    "nl": "Disable Windows Defender realtime monitoring (requires admin)",
+    "code": "Set-MpPreference -DisableRealtimeMonitoring $true",
+    "risk": 5
+  },
+  {
+    "nl": "Bypass execution policy for a script",
+    "code": "powershell.exe -ExecutionPolicy Bypass -File $scriptPath",
+    "risk": 3
+  },
+  {
+    "nl": "Get operating system version",
+    "code": "[Environment]::OSVersion.Version",
+    "risk": 0
+  }
+]
